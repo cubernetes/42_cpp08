@@ -1,19 +1,22 @@
 #pragma once
 
 #include <exception>
+#include <set>
 #include <vector>
 
 class Span {
-    unsigned int _max_size;
-    std::vector<int> _nums;
+    std::multiset<int> _nums;
+    unsigned int _maxSize;
+    unsigned int _minSpan;
 
   public:
     ~Span();
     Span();
     Span(unsigned int size);
     void addNumber(int);
-    void shortestSpan();
-    void longestSpan();
+    void addRange(std::vector<int>::const_iterator, std::vector<int>::const_iterator);
+    unsigned int shortestSpan() const;
+    unsigned int longestSpan() const;
 
     struct SpanFullException : public std::exception {
         const char *what() const throw() /*override*/;
